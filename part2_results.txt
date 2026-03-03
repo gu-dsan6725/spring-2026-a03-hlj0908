@@ -1,0 +1,147 @@
+Part 2: Multi-Source RAG with Routing
+
+Base: /home/ubuntu/dsan6000/spring-2026-a03-hlj0908
+Model: groq/llama-3.1-8b-instant
+
+======================================================================
+Question 1
+======================================================================
+What was the total revenue for Electronics category in December 2024?
+
+[Route] CSV
+
+[Retrieval]
+- Used pandas to filter/aggregate (data/structured/daily_sales.csv)
+
+[Answer]
+The total revenue for the Electronics category in December 2024 was $142,864.31.
+
+Source: (data/structured/daily_sales.csv)
+
+======================================================================
+Question 2
+======================================================================
+Which region had the highest sales volume?
+
+[Route] CSV
+
+[Retrieval]
+- Used pandas to filter/aggregate (data/structured/daily_sales.csv)
+
+[Answer]
+The region with the highest sales volume is **Central**, with 6,779 units sold. 
+
+Source: (data/structured/daily_sales.csv)
+
+======================================================================
+Question 3
+======================================================================
+What are the key features of the Wireless Bluetooth Headphones?
+
+[Route] TEXT
+
+[Retrieval]
+- Structured keyword retrieval over (data/unstructured/*_product_page.txt)
+
+[Answer]
+The key features of the Wireless Bluetooth Headphones are:
+
+- Active Noise Cancellation (ANC) with transparency mode
+- Bluetooth 5.2 for stable connectivity up to 30ft range
+- 40-hour battery life, quick charge (10 min = 3 hours playback)
+
+Source: (data/unstructured/ELEC001_product_page.txt)
+
+======================================================================
+Question 4
+======================================================================
+What do customers say about the Air Fryer's ease of cleaning?
+
+[Route] TEXT
+
+[Retrieval]
+- Structured keyword retrieval over (data/unstructured/*_product_page.txt)
+
+[Answer]
+Based on the provided customer reviews, customers say the Air Fryer is easy to clean. 
+
+Review 1 from Patricia W. states: "Easy to clean and the presets work perfectly." 
+
+Therefore, customers highly rate the Air Fryer's ease of cleaning. 
+- Source: (data/unstructured/HOME003_product_page.txt)
+
+======================================================================
+Question 5
+======================================================================
+Which product has the best customer reviews and how well is it selling?
+
+[Route] BOTH
+
+[Retrieval]
+- Used pandas to filter/aggregate (data/structured/daily_sales.csv)
+- Structured keyword retrieval over (data/unstructured/*_product_page.txt)
+
+[Answer]
+Based on the provided context, the best-review product is:
+
+1. **Vitamin C Serum (BEAU001)**: With an average rating of 5.0/5 from two reviews.
+
+However, to make a more informed decision, we should consider other products with available ratings. Since only two products have available ratings, I will compare them to other available ratings as well.
+
+Other available ratings from product pages:
+
+* **Running Shoes Men (CLTH001)**: 4.67/5 (2 reviews)
+* **Building Blocks Set 500PC (TOYS001)**: 5.0/5 (2 reviews)
+* **Organic Coffee Beans 1kg (FOOD001)**: 5.0/5 (2 reviews)
+* **Wireless Bluetooth Headphones (ELEC001)**: 4.75/5 (2 reviews)
+
+Since only these four products have available ratings, we cannot definitively determine which product has the best customer reviews. However, we can compare their average ratings:
+
+* **Best-review product**: Vitamin C Serum (BEAU001) - 5.0/5
+* **Second-best**: Building Blocks Set 500PC (TOYS001) and Organic Coffee Beans 1kg (FOOD001) - 5.0/5
+* **Third-best**: Running Shoes Men (CLTH001) - 4.67/5
+* **Fourth-best**: Wireless Bluetooth Headphones (ELEC001) - 4.75/5
+
+**Recommendations:**
+
+1. **Vitamin C Serum (BEAU001)**: Based on the available ratings, this product has the highest average rating.
+2. **Consider Building Blocks Set 500PC (TOYS001) and Organic Coffee Beans 1kg (FOOD001)**: Both of these products have a 5.0/5 average rating, making them a close second to the Vitamin C Serum.
+3. **Running Shoes Men (CLTH001)**: With a 4.67/5 average rating, this product is still highly rated but ranks third among the available products.
+
+**Sales Performance**:
+* **BOOK001 (Python Programming Guide)**: 984 units, $42,453.40 revenue
+* Other available product sales: Unfortunately, sales data for the other products is not provided.
+
+To answer your question comprehensively, we would need the sales data for the other products to accurately determine which one is selling well.
+
+======================================================================
+Question 6
+======================================================================
+I want a product for fitness that is highly rated and sells well in the West region. What do you recommend?
+
+[Route] BOTH
+
+[Retrieval]
+- Used pandas to filter/aggregate (data/structured/daily_sales.csv)
+- Structured keyword retrieval over (data/unstructured/*_product_page.txt)
+
+[Answer]
+Based on the provided context, I recommend **Running Shoes Men - CLTH001** from StrideMax Athletics.
+
+**Reasons for Recommendation:**
+
+1. **Highly Rated**: The product has an average rating of 4.40/5, indicating high customer satisfaction.
+2. **Good Sales in West Region**: The product has sold 301 units in the West region, indicating strong demand in this region.
+3. **Strong Sales and Revenue**: Overall, the product has sold 1,324 units with a revenue of $117,319.62, indicating strong market performance.
+4. **Positive Customer Reviews**: Customers have praised the product's cushioning, breathability, and energy return, making it an excellent choice for runners.
+
+**Comparison with Other Products:**
+
+* Building Blocks Set 500pc (TOYS001) has a lower average rating (4.20/5) and lower sales in the West region (50 units).
+* Wireless Bluetooth Headphones (ELEC001) has a similar average rating (4.50/5) but lower sales in the West region (51 units).
+* Dog Food Premium 10kg (PETS001) and Ergonomic Office Chair (OFFC001) do not match the West region sales criteria.
+
+**Recommendations for Next Steps:**
+
+* Consider running a targeted promotion in the West region to further boost sales and revenue.
+* Continue monitoring customer feedback and reviews to ensure the product meets evolving customer needs.
